@@ -85,7 +85,9 @@ int cantidadGenerosFavoritosTSocio(TSocio socio){
 
 
 
- TSocio copiarTSocio(TSocio socio){
-    
-    return NULL;
+TSocio copiarTSocio(TSocio socio){
+    TFecha copiaFechaAlta = copiarTFecha(socio->fechaAlta);
+    TSocio copiaSocio = crearTSocio(socio->ciSocio,socio->nombreSocio,socio->apellidoSocio,socio->fechaAlta);
+    return copiaSocio;
+    // hola cara
 }
