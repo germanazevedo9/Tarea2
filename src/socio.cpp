@@ -86,6 +86,6 @@ int cantidadGenerosFavoritosTSocio(TSocio socio){
 
 
  TSocio copiarTSocio(TSocio socio){
-
+    
     return NULL;
 }
