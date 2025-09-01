@@ -2,41 +2,87 @@
 #include "../include/prestamo.h"
 
 struct rep_prestamo {
+  TSocio socio;
+  TLibro libro;
+  TFecha fechaRetiro;
+  TFecha fechaDevolucion;
 };
 
 TPrestamo crearTPrestamo(TSocio socio, TLibro libro, TFecha fechaRetiro){
-  return NULL;
+  TPrestamo nuevoPrestamo = new rep_prestamo;
+  nuevoPrestamo->socio = socio;
+  nuevoPrestamo->libro = libro;
+  nuevoPrestamo->fechaRetiro = fechaRetiro;
+  return nuevoPrestamo;
 }
  
 void imprimirTPrestamo(TPrestamo prestamo){
+  printf("Préstamo de libro %s a %s %s.\n",tituloTLibro(prestamo->libro),nombreTSocio(prestamo->socio), apellidoTSocio(prestamo->socio));
+  imprimirTFecha(prestamo->fechaRetiro);
+  if (prestamo->fechaDevolucion != NULL){
+    imprimirTFecha(prestamo->fechaDevolucion);
+  } else {
+    printf("No retornado\n");
+  }
 }
 
 void liberarTPrestamo(TPrestamo &prestamo){
+  liberarTSocio(prestamo->socio);
+  liberarTLibro(prestamo->libro);
+  liberarTFecha(prestamo->fechaRetiro);
+  liberarTFecha(prestamo->fechaDevolucion);
+  delete prestamo;
+  prestamo = NULL;
 }
 
 TSocio socioTPrestamo(TPrestamo prestamo){
-  return NULL;
+  TSocio socio = prestamo->socio;
+  return socio;
 }
  
 TFecha fechaRetiroTPrestamo(TPrestamo prestamo){
-  return NULL;
+  TFecha fechaRetiro = prestamo->fechaRetiro;
+  return fechaRetiro;
 }
 
 TFecha fechaDevolucionTPrestamo(TPrestamo prestamo){
-  return NULL;
+  TFecha fechaDevolucion = NULL;
+  if (prestamo->fechaDevolucion != NULL){
+    fechaDevolucion = prestamo->fechaDevolucion;
+  }
+  return fechaDevolucion;
 }
 
 TLibro libroTPrestamo(TPrestamo prestamo){
-  return NULL;
+  TLibro libro = prestamo->libro;
+  return libro;
 }
 
 bool fueRetornadoTPrestamo(TPrestamo prestamo){
-  return false;
+  bool fueRetornado;
+  fueRetornado = false;
+  if (prestamo->fechaDevolucion != NULL){
+    fueRetornado = true;
+  }
+  return fueRetornado;
 }
 
 void actualizarFechaDevolucionTPrestamo(TPrestamo prestamo, TFecha fechaDevolucion){
+  if (prestamo->fechaDevolucion != NULL){
+    liberarTFecha(prestamo->fechaDevolucion);
+  }
+  prestamo->fechaDevolucion = fechaDevolucion;
 }
 
 TPrestamo copiarTPrestamo(TPrestamo prestamo){
-  return NULL;
+  TPrestamo copiaPrestamo = new rep_prestamo;
+  copiaPrestamo->socio = copiarTSocio(prestamo->socio);
+  copiaPrestamo->libro = copiarTLibro(prestamo->libro);
+  copiaPrestamo->fechaRetiro = copiarTFecha(prestamo->fechaRetiro);
+  if (prestamo->fechaDevolucion != NULL){
+    copiaPrestamo->fechaDevolucion = copiarTFecha(prestamo->fechaDevolucion);
+  } else {  
+    copiaPrestamo->fechaDevolucion = NULL;
+  }
+  return copiaPrestamo;
 }

@@ -1,0 +1,12 @@
+0a1,11
+> ==9467== Conditional jump or move depends on uninitialised value(s)
+> ==9467==    at 0x10D3CD: imprimirTPrestamo(rep_prestamo*) (prestamo.cpp:22)
+> ==9467==    by 0x10B1BB: main_imprimirPrestamo(rep_prestamo*) (principal.cpp:605)
+> ==9467==    by 0x109A10: main (principal.cpp:253)
+> ==9467== 
+> ==9467== Conditional jump or move depends on uninitialised value(s)
+> ==9467==    at 0x10C871: liberarTFecha(rep_fecha*&) (fecha.cpp:24)
+> ==9467==    by 0x10D451: liberarTPrestamo(rep_prestamo*&) (prestamo.cpp:33)
+> ==9467==    by 0x10B159: main_liberarPrestamo(rep_prestamo*&) (principal.cpp:599)
+> ==9467==    by 0x1099DF: main (principal.cpp:251)
+> ==9467== 
