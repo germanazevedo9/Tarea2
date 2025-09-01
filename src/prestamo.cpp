@@ -13,6 +13,7 @@ TPrestamo crearTPrestamo(TSocio socio, TLibro libro, TFecha fechaRetiro){
   nuevoPrestamo->socio = socio;
   nuevoPrestamo->libro = libro;
   nuevoPrestamo->fechaRetiro = fechaRetiro;
+  nuevoPrestamo->fechaDevolucion = NULL;
   return nuevoPrestamo;
 }
  
