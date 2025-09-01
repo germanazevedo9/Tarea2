@@ -22,7 +22,7 @@ TSocio crearTSocio(int ci, const char nombre[MAX_NOMBRE_SOCIO], const char apell
 }
 void imprimirGenerosDelSocio(TSocio socio){
     for (int i=0;i<socio ->generos.tope;i++){
-        printf("%d\n",socio->generos.genfavs[i]);
+        printf("%d ",socio->generos.genfavs[i]);
     };
     printf("\n");
 };
