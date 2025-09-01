@@ -83,11 +83,22 @@ int cantidadGenerosFavoritosTSocio(TSocio socio){
     return socio->generos.tope;
 }
 
-
-
 TSocio copiarTSocio(TSocio socio){
+
+    TSocio copiaSocio = new rep_socio;
+    // Copia los datos basicos del socio
+    copiaSocio->ciSocio = socio->ciSocio;
+    strcpy(copiaSocio->nombreSocio,socio->nombreSocio);
+    strcpy(copiaSocio->apellidoSocio,socio->apellidoSocio);
+    // Copia la fecha de alta
     TFecha copiaFechaAlta = copiarTFecha(socio->fechaAlta);
-    TSocio copiaSocio = crearTSocio(socio->ciSocio,socio->nombreSocio,socio->apellidoSocio,socio->fechaAlta);
+    copiaSocio->fechaAlta = copiaFechaAlta;
+
+    // Copia los generos favoritos
+    copiaSocio->generos.tope = socio->generos.tope;
+    for(int i=0; i<socio->generos.tope;i++){
+        copiaSocio->generos.genfavs[i] = socio->generos.genfavs[i];
+    }
+ 
     return copiaSocio;
-    // hola cara
 }
