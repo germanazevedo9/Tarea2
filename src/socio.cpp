@@ -61,16 +61,31 @@ TFecha fechaAltaTSocio(TSocio socio){
 }
 
 void agregarGeneroFavoritoTSocio(TSocio &socio, int idGenero){
+    int i=0;
+    while ((i<socio->generos.tope) && (i!=MAX_GENEROS_FAVORITOS)){
+        i++;
+    }
+    socio->generos.genfavs[i]= idGenero;
+    socio->generos.tope++;
 }
 
 bool tieneGeneroFavoritoTSocio(TSocio socio, int idGenero){
-    return false;
+    int i = 0;
+    while ((i<socio->generos.tope) && (socio->generos.genfavs[i]!= idGenero)){
+        i++;
+    }
+    
+    return i<socio->generos.tope;
 }
 
 int cantidadGenerosFavoritosTSocio(TSocio socio){
-    return 0;
+
+    return socio->generos.tope;
 }
 
-TSocio copiarTSocio(TSocio socio){
+
+
+ TSocio copiarTSocio(TSocio socio){
+
     return NULL;
 }
