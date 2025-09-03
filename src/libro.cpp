@@ -67,7 +67,7 @@ char* apellidoAutorTLibro(TLibro l){
 
 // Retorna el id del género del libro 'l'
 int idGeneroTLibro(TLibro l){
-    int x = l->ID;
+    int x = l->ID; 
     return x;
 }
 

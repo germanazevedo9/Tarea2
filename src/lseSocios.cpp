@@ -2,17 +2,27 @@
 #include "../include/lseSocios.h"
 
 struct rep_lseSocios {
+	TSocio socio;
+	rep_lseSocios* sig;
 };
 
 TLSESocios crearTLSESociosVacia(){
-    return NULL;
+	TLSESocios lseSocios = new rep_lseSocios;
+	lseSocios->socio = NULL;
+	lseSocios->sig = NULL;
+	return lseSocios;
 }
 
 bool esVaciaTLSESocios(TLSESocios lseSocios){
-	return false;
+	return (lseSocios->socio == NULL && lseSocios->sig == NULL);
 }
 
 void imprimirTLSESocios(TLSESocios lseSocios){
+	printf("Lista de Socios:\n");
+	while (!esVaciaTLSESocios(lseSocios)) {
+		imprimirTSocio(lseSocios->socio);
+		lseSocios = lseSocios->sig;
+	}
 }
 
 void liberarTLSESocios(TLSESocios &lseSocios){

@@ -41,19 +41,23 @@ void liberarTSocio(TSocio &socio){
 }
 
 int ciTSocio(TSocio socio){
-    return socio->ciSocio;
+    int copiaCi = socio->ciSocio;
+    return copiaCi;
 }
 
 char* nombreTSocio(TSocio socio){
-    return socio->nombreSocio;
+    char* copiaNombre = socio->nombreSocio; 
+    return copiaNombre;
 }
 
 char* apellidoTSocio(TSocio socio){
-    return socio->apellidoSocio;
+    char* copiaapellido = socio->apellidoSocio; 
+    return copiaapellido;
 }
 
 TFecha fechaAltaTSocio(TSocio socio){
-    return socio->fechaAlta;
+    TFecha copia = socio->fechaAlta;
+    return copia;
 }
 
 void agregarGeneroFavoritoTSocio(TSocio &socio, int idGenero){
@@ -82,7 +86,7 @@ int cantidadGenerosFavoritosTSocio(TSocio socio){
 TSocio copiarTSocio(TSocio socio){
 
     TSocio copiaSocio = new rep_socio;
-    // Copia los datos basicos del socio
+    // opia los datos basicos del socio
     copiaSocio->ciSocio = socio->ciSocio;
     strcpy(copiaSocio->nombreSocio,socio->nombreSocio);
     strcpy(copiaSocio->apellidoSocio,socio->apellidoSocio);
