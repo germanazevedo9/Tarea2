@@ -37,13 +37,11 @@ void liberarTPrestamo(TPrestamo &prestamo){
 }
 
 TSocio socioTPrestamo(TPrestamo prestamo){
-  TSocio socio = prestamo->socio;
-  return socio;
+  return prestamo->socio;
 }
  
 TFecha fechaRetiroTPrestamo(TPrestamo prestamo){
-  TFecha fechaRetiro = prestamo->fechaRetiro;
-  return fechaRetiro;
+  return prestamo->fechaRetiro;
 }
 
 TFecha fechaDevolucionTPrestamo(TPrestamo prestamo){
@@ -55,8 +53,7 @@ TFecha fechaDevolucionTPrestamo(TPrestamo prestamo){
 }
 
 TLibro libroTPrestamo(TPrestamo prestamo){
-  TLibro libro = prestamo->libro;
-  return libro;
+  return prestamo->libro;
 }
 
 bool fueRetornadoTPrestamo(TPrestamo prestamo){
