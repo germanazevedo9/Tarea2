@@ -26,12 +26,11 @@ void imprimirTLSESocios(TLSESocios lseSocios){
 }
 
 void liberarTLSESocios(TLSESocios &lseSocios){
-    while (lseSocios != NULL) {
-        TLSESocios nodo = lseSocios;       
-        lseSocios = lseSocios->sig;             
-        liberarTSocio(nodo->socio);     
-        delete nodo;
+    if (lseSocios != NULL) {
+		liberarTLSESocios(lseSocios->sig);                         
+    
     }
+	delete lseSocios;
     lseSocios = NULL;                     
 }
 
