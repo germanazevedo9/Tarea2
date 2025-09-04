@@ -27,16 +27,12 @@ void imprimirTLSESocios(TLSESocios lseSocios){
 
 void liberarTLSESocios(TLSESocios &lseSocios){
     while (lseSocios != NULL) {
-        TLSESocios nodo = lseSocios;        // nodo actual
-        lseSocios = lseSocios->sig;              // guardar el siguiente ANTES de liberar
-
-        // 1) liberar el contenido que guarda el nodo
-        liberarTSocio(nodo->socio);      // esto a su vez libera la fecha, etc.
-
-        // 2) liberar el propio nodo
+        TLSESocios nodo = lseSocios;       
+        lseSocios = lseSocios->sig;             
+        liberarTSocio(nodo->socio);     
         delete nodo;
     }
-    lseSocios = NULL;                        // lista vacía segura
+    lseSocios = NULL;                     
 }
 
 
