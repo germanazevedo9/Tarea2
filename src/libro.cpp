@@ -26,9 +26,11 @@ TLibro crearTLibro(int isbn, const char titulo[MAX_TITULO], const char nombreAut
 // Libera la memoria asignada para el libro 'l'
 // Debe liberar también la memoria de la fecha asociada
 void liberarTLibro(TLibro &l){
-    liberarTFecha(l->fecha);
-    delete l;
-    l = NULL;
+    if (l != NULL){
+        liberarTFecha(l->fecha);
+        delete l;
+        l = NULL;
+    }
 }
 
 // Retorna el isbn del libro 'l'

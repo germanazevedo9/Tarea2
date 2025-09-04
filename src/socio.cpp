@@ -35,9 +35,11 @@ void imprimirTSocio(TSocio socio){
 }
 
 void liberarTSocio(TSocio &socio){
+    if (socio != NULL){
     liberarTFecha(socio->fechaAlta);
     delete socio;
     socio = NULL;
+    }
 }
 
 int ciTSocio(TSocio socio){

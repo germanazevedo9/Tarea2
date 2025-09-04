@@ -19,16 +19,29 @@ bool esVaciaTLSESocios(TLSESocios lseSocios){
 
 void imprimirTLSESocios(TLSESocios lseSocios){
 	printf("Lista de Socios:\n");
-	while (!esVaciaTLSESocios(lseSocios)) {
+	while (!esVaciaTLSESocios(lseSocios) || lseSocios->socio != NULL) {
 		imprimirTSocio(lseSocios->socio);
 		lseSocios = lseSocios->sig;
 	}
 }
 
 void liberarTLSESocios(TLSESocios &lseSocios){
+    while (lseSocios != NULL) {
+        TLSESocios nodo = lseSocios;        // nodo actual
+        lseSocios = lseSocios->sig;              // guardar el siguiente ANTES de liberar
+
+        // 1) liberar el contenido que guarda el nodo
+        liberarTSocio(nodo->socio);      // esto a su vez libera la fecha, etc.
+
+        // 2) liberar el propio nodo
+        delete nodo;
+    }
+    lseSocios = NULL;                        // lista vacía segura
 }
 
+
 void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio){
+	
 }
 
 bool existeSocioTLSESocios(TLSESocios lseSocios, int ci){
