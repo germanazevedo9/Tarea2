@@ -36,24 +36,41 @@ void liberarTLSESocios(TLSESocios &lseSocios){
 
 
 void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio){
-	
+	if ((lseSocios->sig != NULL) || ());
 }
 
 bool existeSocioTLSESocios(TLSESocios lseSocios, int ci){
-	return false;
+	if (lseSocios == NULL)return;
+	while((lseSocios != NULL) && (ciTSocio(lseSocios->socio) != ci)){
+		lseSocios = lseSocios->sig;
+	}
+	return (ciTSocio(lseSocios->socio) == ci);
 }
 
 TSocio obtenerSocioTLSESocios(TLSESocios lseSocios, int ci){
-    return NULL;
-}
-
-TSocio obtenerNesimoTLSESocios(TLSESocios lseSocios, int n){
-	return NULL;
+	if (!(existeSocioTLSESocios(lseSocios, ci) != true))return;
+	while(ciTSocio(lseSocios->socio) == ci){
+		lseSocios = lseSocios->sig;
+	}
+    return lseSocios->socio;
 }
 
 nat cantidadTLSESocios(TLSESocios lseSocios){
-	return 0;
+	if (lseSocios == NULL)return 0;
+	else return (1 + cantidadTLSESocios(lseSocios->sig));
 }
+
+TSocio obtenerNesimoTLSESocios(TLSESocios lseSocios, int n){
+	if ((n>cantidadTLSESocios(lseSocios))|| n < 1)return;
+	int i=1;
+	while (i<n){
+		lseSocios = lseSocios->sig;
+		i++;
+	}
+	return lseSocios->socio;
+}
+
+
 
 void removerSocioTLSESocios(TLSESocios &lseSocios, int ci){
 }
