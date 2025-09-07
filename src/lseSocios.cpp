@@ -38,10 +38,12 @@ void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio){
 }
 
 bool existeSocioTLSESocios(TLSESocios lseSocios, int ci){
+	
 	return false;
 }
 
 TSocio obtenerSocioTLSESocios(TLSESocios lseSocios, int ci){
+
     return NULL;
 }
 
