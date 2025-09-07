@@ -36,47 +36,54 @@ void liberarTLSESocios(TLSESocios &lseSocios){
     lseSocios = NULL;                     
 }
 
-void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio){
-	if(lseSocios->socio == NULL){
-		lseSocios->socio = socio;
-		lseSocios->sig = NULL;
-	}
-	else{
-		if(compararTFechas(fechaAltaTSocio(socio),fechaAltaTSocio(lseSocios->socio)) >= 0){
-			if(lseSocios->sig == NULL){
-				TLSESocios nuevo = new rep_lseSocios;
-				nuevo->socio = socio;
-				nuevo->sig = NULL;
-				lseSocios->sig = nuevo;
-				delete nuevo;
-				nuevo = NULL;
-			}
-			else{
-				insertarTLSESocios(lseSocios->sig, socio);
-			}
-		}
-		else{
-			TLSESocios nuevo = new rep_lseSocios;
-			nuevo->socio = lseSocios->socio;
-			nuevo->sig = lseSocios->sig;
-			lseSocios->socio = socio;
-			lseSocios->sig = nuevo;
-			delete nuevo;
-			nuevo = NULL;
-		}	
-	}
+void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio) {
+    // Si la lista (puntero) es NULL, crear primer nodo
+    if (lseSocios == NULL) {
+        lseSocios = new rep_lseSocios;
+        lseSocios->socio = socio;
+        lseSocios->sig   = NULL;
+        return;
+    }
+
+    // Si usan un nodo cabecera “vacío”
+    if (lseSocios->socio == NULL) {
+        lseSocios->socio = socio;
+        lseSocios->sig   = NULL;
+        return;
+    }
+
+    // Si la fecha nueva es >= a la del nodo actual, avanzar (empates van después)
+    if (compararTFechas(fechaAltaTSocio(socio),
+                        fechaAltaTSocio(lseSocios->socio)) >= 0) {
+        if (lseSocios->sig == NULL) {
+            TLSESocios nuevo = new rep_lseSocios;
+            nuevo->socio = socio;
+            nuevo->sig   = NULL;
+            lseSocios->sig = nuevo;   // <- ENLAZAR y listo (¡no borrar!)
+        } else {
+            insertarTLSESocios(lseSocios->sig, socio);
+        }
+    } else {
+        // Insertar antes del actual: “empujar” el actual hacia adelante
+        TLSESocios nuevo = new rep_lseSocios;
+        nuevo->socio = lseSocios->socio;
+        nuevo->sig   = lseSocios->sig;
+
+        lseSocios->socio = socio;
+        lseSocios->sig   = nuevo;     // <- ENLAZAR y listo (¡no borrar!)
+    }
 }
+
 bool existeSocioTLSESocios(TLSESocios lseSocios, int ci){
-	if (lseSocios == NULL){return false;}
-	while((lseSocios != NULL) && (ciTSocio(lseSocios->socio) != ci)){
+	if (esVaciaTLSESocios(lseSocios)){return false;}
+	while((lseSocios->sig != NULL)  && (ciTSocio(lseSocios->socio) != ci)){
 		lseSocios = lseSocios->sig;
 	}
 	return (ciTSocio(lseSocios->socio) == ci);
 }
 
 TSocio obtenerSocioTLSESocios(TLSESocios lseSocios, int ci){
-	if (!(existeSocioTLSESocios(lseSocios, ci) != true)){return NULL;}
-	while(ciTSocio(lseSocios->socio) == ci){
+	while(ciTSocio(lseSocios->socio) != ci){
 		lseSocios = lseSocios->sig;
 	}
     return lseSocios->socio;
