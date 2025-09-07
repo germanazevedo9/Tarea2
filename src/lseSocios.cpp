@@ -28,12 +28,10 @@ void imprimirTLSESocios(TLSESocios lseSocios){
 void liberarTLSESocios(TLSESocios &lseSocios){
     if (lseSocios != NULL) {
 		liberarTLSESocios(lseSocios->sig);                         
-    
     }
 	delete lseSocios;
     lseSocios = NULL;                     
 }
-
 
 void insertarTLSESocios(TLSESocios &lseSocios, TSocio socio){
 	
