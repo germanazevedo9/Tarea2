@@ -109,4 +109,39 @@ TSocio obtenerNesimoTLSESocios(TLSESocios lseSocios, int n){
 
 
 void removerSocioTLSESocios(TLSESocios &lseSocios, int ci){
+    // Se asume lseSocios != NULL (tu código siempre crea la "cabeza")
+    TLSESocios actual   = lseSocios;
+    TLSESocios anterior = NULL;
+
+    // Buscar el nodo a borrar (ojo si socio es NULL en cabeza vacía)
+    while (actual != NULL && ciTSocio(actual->socio) != ci) {
+        anterior = actual;
+        actual   = actual->sig;
+    }
+    if (actual == NULL) return; // por si acaso
+
+    if (anterior == NULL) { // borrar en la cabeza
+        if (actual->sig == NULL) {
+            // Era el único elemento: dejamos la cabeza "vacía"
+            liberarTSocio(actual->socio);
+            actual->sig   = NULL;
+        } else {
+            // Hay más nodos: movemos datos del siguiente a la cabeza y borramos el siguiente
+            TLSESocios siguiente = actual->sig;
+
+            // liberar socio previo de la cabeza
+            liberarTSocio(actual->socio);
+
+            // mover campos del siguiente
+            actual->socio = siguiente->socio; // NO liberar: pasa a ser de 'actual'
+            actual->sig   = siguiente->sig;
+
+            delete siguiente; // liberamos solo el nodo, no el socio movido
+        }
+    } else {
+        // borrar en medio/fin
+        anterior->sig = actual->sig;
+        liberarTSocio(actual->socio);
+        delete actual;
+    }
 }
