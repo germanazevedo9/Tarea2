@@ -1,0 +1,25 @@
+==19243== Invalid read of size 4
+==19243==    at 0x10CD41: isbnTLibro(rep_libro*) (libro.cpp:38)
+==19243==    by 0x10B957: main_maxISBNLibroABBLibros(rep_abbLibros*) (principal.cpp:776)
+==19243==    by 0x10A0EB: main (principal.cpp:337)
+==19243==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==19243== 
+==19243== 
+==19243== Process terminating with default action of signal 11 (SIGSEGV)
+==19243==  Access not within mapped region at address 0x0
+==19243==    at 0x10CD41: isbnTLibro(rep_libro*) (libro.cpp:38)
+==19243==    by 0x10B957: main_maxISBNLibroABBLibros(rep_abbLibros*) (principal.cpp:776)
+==19243==    by 0x10A0EB: main (principal.cpp:337)
+==19243==  If you believe this happened as a result of a stack
+==19243==  overflow in your program's main thread (unlikely but
+==19243==  possible), you can try to increase the size of the
+==19243==  main thread stack using the --main-stacksize= flag.
+==19243==  The main thread stack size used in this run was 8388608.
+==19243== 324 (312 direct, 12 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 5
+==19243==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19243==    by 0x10CC4D: crearTLibro(int, char const*, char const*, char const*, char const*, int, rep_fecha*) (libro.cpp:15)
+==19243==    by 0x10A6E5: main_crearLibro(rep_libro*&, rep_fecha*&) (principal.cpp:442)
+==19243==    by 0x109594: main (principal.cpp:196)
+==19243== 
+timeout: la orden monitorizada ha volcado un 'core'
+Segmentation fault
