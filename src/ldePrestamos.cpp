@@ -126,8 +126,6 @@ TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamos, int n){
 
 // criterio = 0 -> prestamos retornados
 // criterio = 1 -> prestamos no retornados
-
-
 TLDEPrestamos filtrarPrestamosTLDEPrestamos(TLDEPrestamos &ldePrestamos, int criterio){
     TLDEPrestamos filtrada = crearTLDEPrestamosVacia();
     nodoDoble* actual = ldePrestamos->inicio;
