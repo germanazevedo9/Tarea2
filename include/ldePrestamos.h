@@ -81,12 +81,11 @@ TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamo, int n);
 
 // Función que retorna una nueva lista únicamente con los préstamos
 // que cumplen el criterio pasado por parámetro.
-// La lista filtrada no comparte memoria con la lista original
+// La lista filtrada no comparte memoria con la lista original.
 // Los préstamos retornados en la nueva lista son copias limpias
 // de los que pertenecen a la lista parámetro.
 // criterio = 0 -> préstamos retornados
 // criterio = 1 -> préstamos no retornados
-//
 /* Requisitos específicos de la implementación solicitada: */
 // La funcion es O(n) peor caso, siendo n la cantidad de préstamos en la lista árbol.
 TLDEPrestamos filtrarPrestamosTLDEPrestamos(TLDEPrestamos &ldePrestamos, int criterio);

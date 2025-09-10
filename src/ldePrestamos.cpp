@@ -91,6 +91,7 @@ void imprimirInvertidoTLDEPrestamos(TLDEPrestamos ldePrestamos){
         actual = actual->ant;
     }
 }
+
 nat cantidadRec(nodoDoble* nodo) {
     if (nodo == NULL) return 0;
     return 1 + cantidadRec(nodo->sig);
@@ -125,8 +126,29 @@ TPrestamo obtenerNesimoTLDEPrestamos(TLDEPrestamos &ldePrestamos, int n){
 
 // criterio = 0 -> prestamos retornados
 // criterio = 1 -> prestamos no retornados
+
+
 TLDEPrestamos filtrarPrestamosTLDEPrestamos(TLDEPrestamos &ldePrestamos, int criterio){
-    return NULL;
+    TLDEPrestamos filtrada = crearTLDEPrestamosVacia();
+    nodoDoble* actual = ldePrestamos->inicio;
+    if(criterio == 0){
+        while(actual != NULL){
+            if(fueRetornadoTPrestamo(actual->prestamo)){
+                TPrestamo prestamoCopia = copiarTPrestamo(actual->prestamo);
+                insertarTLDEPrestamos(filtrada, prestamoCopia);
+            
+            }
+            actual = actual->sig;
+        }
+    }
+    if(criterio == 1){
+        while(actual != NULL){
+            if(!fueRetornadoTPrestamo(actual->prestamo)){
+                TPrestamo prestamoCopia = copiarTPrestamo(actual->prestamo);
+                insertarTLDEPrestamos(filtrada, prestamoCopia);
+            }
+            actual = actual->sig;
+        }
+    }
+    return filtrada;
 }
-
-
